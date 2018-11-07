@@ -1,5 +1,6 @@
 function getName()
 {
+    alert("function getName called");
     var python = require("python-shell")
     var path = require("path")
     
@@ -8,6 +9,7 @@ function getName()
     
     var options = {
         scriptPath : path.join(__dirname, '/../engine/'),
+        pythonPath : 'usr/bin/python3',
         args : [name]
     }
     
