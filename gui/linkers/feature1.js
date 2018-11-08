@@ -1,7 +1,6 @@
 function getName()
 {
-    alert("function getName called");
-    var python = require("python-shell")
+    var ps = require("python-shell")
     var path = require("path")
     
     var name = document.getElementById("name").value
@@ -9,13 +8,10 @@ function getName()
     
     var options = {
         scriptPath : path.join(__dirname, '/../engine/'),
-        pythonPath : 'usr/bin/python3',
+        pythonPath : '/usr/bin/python3',
         args : [name]
     }
     
-    var namePrint = new python('feature1.py', options);
-    namePrint.on('message', function(message)
-                {
-        swal(message);
-    })
+    ps.PythonShell.run('feature1.py', options,
+        function (err, results) { if (err) throw err; swal(results[0]); });
 }

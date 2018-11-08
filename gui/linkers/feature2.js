@@ -1,16 +1,14 @@
 function feat2()
 {
-    var python = require("python-shell")
+    //import {python} from 'python-shell';
+    var ps = require("python-shell")
     var path = require("path")
     
     var options = {
         scriptPath : path.join(__dirname, '/../engine/'),
-        pythonPath : 'usr/bin/python3'
+        pythonPath : '/usr/bin/python3'
     }
-    
-    var namePrint = new python('feature2.py', options);
-    namePrint.on('message', function(message)
-                {
-        swal(message);
-    })
+
+    ps.PythonShell.run('feature2.py', options,
+        function (err, results) { if (err) throw err; swal(results[0]); });
 }
